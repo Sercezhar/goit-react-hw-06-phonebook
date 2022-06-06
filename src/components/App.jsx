@@ -4,12 +4,12 @@ import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { Notification } from './Notification';
 import { Filter } from './Filter';
-import { useSelector } from 'react-redux';
+import { useContacts } from 'hooks/useContacts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
-  const contacts = useSelector(state => state.contacts.items);
+  const { contacts } = useContacts();
 
   return (
     <Container>
