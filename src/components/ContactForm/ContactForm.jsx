@@ -1,13 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
 import { useState } from 'react';
+import { useContacts } from 'hooks/useContacts';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import styles from './ContactForm.module.css';
 
 export function ContactForm() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const { contacts, addContact } = useContacts();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -44,7 +42,7 @@ export function ContactForm() {
     if (alreadyInContacts) {
       toast.error(`${newContact.name.toUpperCase()} is already in contacts.`);
     } else {
-      dispatch(addContact(newContact));
+      addContact(newContact);
       toast.success(`${newContact.name.toUpperCase()} is added to contacts.`);
     }
 
